@@ -1,0 +1,6 @@
+../Core/Src/adc.c:33:6:MX_ADC1_Init	24	static
+../Core/Src/adc.c:120:6:HAL_ADC_MspInit	48	static
+../Core/Src/adc.c:173:6:HAL_ADC_MspDeInit	16	static
+../Core/Src/adc.c:205:6:HAL_ADC_ConvCpltCallback	16	static
+../Core/Src/adc.c:209:7:adc_value_to_voltage0	16	static
+../Core/Src/adc.c:212:7:adc_value_to_voltage1	16	static

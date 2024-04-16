@@ -1,0 +1,4 @@
+../Core/Src/tim.c:32:6:MX_TIM2_Init	3
+../Core/Src/tim.c:76:6:HAL_TIM_Encoder_MspInit	2
+../Core/Src/tim.c:107:6:HAL_TIM_Encoder_MspDeInit	2
+../Core/Src/tim.c:133:9:rotary_encoder_value	3
