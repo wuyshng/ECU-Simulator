@@ -31,10 +31,10 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stdint.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "math.h"
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include <string.h>
 #include <stdbool.h>
 #include <malloc.h>
