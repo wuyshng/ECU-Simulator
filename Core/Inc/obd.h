@@ -9,11 +9,6 @@
 #define INC_OBD_H_
 
 #include "main.h"
-#include "can.h"
-#include "adc.h"
-#include "stdint.h"
-#include "stdio.h"
-#include "stdlib.h"
 
 /* Details from http://en.wikipedia.org/wiki/OBD-II_PIDs */
 #define MODE1               0x01        //Show current data
@@ -58,9 +53,15 @@ typedef struct{
 extern OBD2Data obd2_data;
 extern ECUValue ecuValue;
 extern uint16_t adcScanValue[6];
+extern uint8_t numberPID;
+extern uint8_t PID_data[2];
+extern int32_t curPIDValue;
+extern int32_t oldPIDValue;
+extern uint8_t ecuDTC;
 
 int gen_random_number(void);
 void ecu_scale_analog_value(void);
+void ecu_display_LCD(uint8_t numberPID);
 void ecu_send_respond(void);
 long map(long inVal, long inMin, long inMax, long outMin, long outMax);
 void display_ecu_value(int32_t PIDValue);
