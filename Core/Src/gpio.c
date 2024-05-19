@@ -22,7 +22,41 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN 0 */
+#include "lcd_i2c.h"
 
+extern uint8_t ecuDTC;
+
+//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+//{
+//	while(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 0);
+//	if(GPIO_Pin == GPIO_PIN_10)
+//	{
+//		if(stateMenu == 0) {
+//			stateMenu = 1;
+//		} else {
+//			optionSelect = 0;
+//			stateMenu = 0;
+//		}
+//	}
+//}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) == 0);
+	if(GPIO_Pin == GPIO_PIN_2)
+	{
+		if(ecuDTC == 0) {
+			ecuDTC = 1;
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1);
+			if(menuMainCnt == 2) {
+				LCD_Clear_Line(1);
+			}
+		} else {
+			ecuDTC = 0;
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 0);
+		}
+	}
+}
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/
