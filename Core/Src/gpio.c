@@ -26,20 +26,6 @@
 
 extern uint8_t ecuDTC;
 
-//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-//{
-//	while(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 0);
-//	if(GPIO_Pin == GPIO_PIN_10)
-//	{
-//		if(stateMenu == 0) {
-//			stateMenu = 1;
-//		} else {
-//			optionSelect = 0;
-//			stateMenu = 0;
-//		}
-//	}
-//}
-
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) == 0);

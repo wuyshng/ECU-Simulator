@@ -161,8 +161,7 @@ void loop_menu(void)
 	/* Using pushbutton to select Menu */
 	if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 0)
 	{
-		while (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 0)
-			;
+		while (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 0);
 		stateMenu = 1;
 		LCD_Clear_Display();
 		HAL_Delay(10);
@@ -269,8 +268,7 @@ void setting_value(int menuSelect)
 	/* Using pushbutton to back main menu */
 	if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 0)
 	{
-		while (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 0)
-			;
+		while (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 0);
 		optionSelect = 0;
 		stateMenu = 0;
 		update_menu(menuMainCnt);

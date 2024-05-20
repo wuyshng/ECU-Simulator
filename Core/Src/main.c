@@ -134,7 +134,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
     HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adcScanValue, 6);
     while (!adcConvCompleted);
     adcConvCompleted = 0;
