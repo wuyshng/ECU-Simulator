@@ -1,4 +1,4 @@
-![20240602_162811](https://github.com/wuyshng/ECU-Simulator/assets/132085105/89a683d6-3002-4cef-9425-8824079faf39)﻿# ECU-Simulator
+﻿# ECU-Simulator
 This project simulate Engine Control Unit (ECU) including: Engine speed, Vehicle speed, Engine coolant temp, MAF sensor, Throttle position sensor, and Oxygen sensor. It can be used for testing and development of OBD devices and software.
 
 # Support PIDs
