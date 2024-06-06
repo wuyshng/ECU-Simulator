@@ -17,8 +17,8 @@ This project simulate Engine Control Unit (ECU) including: Engine speed, Vehicle
 * 6 potentiometers for PID adjustment 
 * LCD 16x2
 * 12 VDC supply
-![20240602_162811](https://github.com/wuyshng/ECU-Simulator/assets/132085105/db1cf5fc-cbe8-4d2d-90ed-04772c12b48b)
 
+![20240602_162811](https://github.com/wuyshng/ECU-Simulator/assets/132085105/db1cf5fc-cbe8-4d2d-90ed-04772c12b48b)
 
 # Features:
 * Show current data
