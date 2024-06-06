@@ -37,6 +37,126 @@ void ecu_scale_analog_value(void)
 	}
 }
 
+void ecu_send_respond(void)
+{
+	TxHeader.StdId = PID_REPLY;		/* ID message */
+	TxHeader.IDE = CAN_ID_STD;
+	TxHeader.RTR = CAN_RTR_DATA;
+	TxHeader.DLC = 8;				/* Data length */
+
+	if(RxData[1] == MODE1)
+	{
+		TxData[1] = MODE1_RESPONSE;
+		switch(RxData[2])
+		{
+			case PID_SUPPORTED:
+				TxData[0] = 0x06;
+				TxData[2] = PID_SUPPORTED;
+				TxData[3] = 0xC8;
+				TxData[4] = 0x19;
+				TxData[5] = 0xB0;
+				TxData[6] = 0x00;
+				TxData[7] = 0x00;
+				HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+				break;
+
+			case MONITOR_STATUS:
+				TxData[0] = 0x05;
+				TxData[2] = MONITOR_STATUS;
+				TxData[3] = 0xE8;
+				TxData[4] = 0x07;
+				TxData[5] = 0xFF;
+				HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+				break;
+
+			case ENGINE_COOLANT_TEMP:		//	A-40 [degree C]
+				TxData[0] = 0x03;
+				TxData[2] = ENGINE_COOLANT_TEMP;
+				TxData[3] = obd2_data.engine_coolant_temp;
+				HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+				break;
+
+			case ENGINE_SPEED:				//	((A*256)+B)/4 [RPM]
+				TxData[0] = 0x04;
+				TxData[2] = ENGINE_SPEED;
+				TxData[3] = (obd2_data.engine_speed & 0xff00) >> 8;
+				TxData[4] = obd2_data.engine_speed & 0x00ff;
+				HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+				break;
+
+			case VEHICLE_SPEED:				//	A [km/h]
+				TxData[0] = 0x03;
+				TxData[2] = VEHICLE_SPEED;
+				TxData[3] = obd2_data.vehicle_speed;
+				HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+				break;
+
+			case MAF_SENSOR:				//	((256*A)+B)/100 [g/s]
+				TxData[0] = 0x04;
+				TxData[2] = MAF_SENSOR;
+				TxData[3] = (obd2_data.maf_sensor & 0xff00) >> 8;
+				TxData[4] =  obd2_data.maf_sensor & 0x00ff;
+				HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+				break;
+
+			case THROTTLE:					// 100*A/255 [%]
+				TxData[0] = 0x03;
+				TxData[2] = THROTTLE;
+				TxData[3] = obd2_data.throttle;
+				HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+				break;
+
+			case O2_VOLTAGE:				//	A/200 or (B-128)*100/128 (if B==0xFF, sensor is not used in trim calc)
+				TxData[0] = 0x04;
+				TxData[2] = O2_VOLTAGE;
+				TxData[3] = (obd2_data.o2_voltage & 0xff00) >> 8;
+				TxData[4] = obd2_data.o2_voltage & 0x00ff;
+				HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+				break;
+		}
+	}
+
+	if(RxData[1] == MODE2)
+	{
+		TxData[0] = 0x06;
+		TxData[1] = MODE2_RESPONSE;
+		TxData[2] = 0x02;
+		TxData[3] = 0xC8;
+		TxData[4] = 0x19;
+		TxData[5] = 0xB0;
+		TxData[6] = 0xCC;
+		TxData[7] = 0xCC;
+		HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+	}
+
+	if(RxData[1] == MODE3)
+	{
+		if(ecuDTC == 0) {
+			TxData[0] = 0x02;
+			TxData[1] = MODE3_RESPONSE;
+			TxData[2] = 0x00;
+		} else {
+			TxData[0] = 0x06;
+			TxData[1] = MODE3_RESPONSE;
+			TxData[2] = 0x01;
+			TxData[3] = 0x01;	//A fault in the mass air flow (MAF) sensor or circuit
+			TxData[4] = 0x01;
+			TxData[5] = 0x01;	//Lost communication with head up display
+			TxData[6] = 0x16;
+			HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+		}
+	}
+
+	if(RxData[1] == MODE4)
+	{
+		ecuDTC = 0;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 0);
+		TxData[0] = 0x00;
+		TxData[1] = MODE4_RESPONSE;
+		HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+	}
+}
+
 void ecu_display_LCD(uint8_t numberPID)
 {
 	switch (numberPID)
