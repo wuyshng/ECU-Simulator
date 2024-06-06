@@ -47,7 +47,7 @@ typedef struct{
 	uint16_t vehicle_speed;
 	uint16_t maf_sensor;
 	uint16_t throttle;
-	int16_t o2_voltage;
+	float o2_voltage;
 } ECUValue;
 
 extern OBD2Data obd2_data;
@@ -55,8 +55,8 @@ extern ECUValue ecuValue;
 extern uint16_t adcScanValue[6];
 extern uint8_t numberPID;
 extern uint8_t PID_data[2];
-extern int32_t curPIDValue;
-extern int32_t oldPIDValue;
+extern float curPIDValue;
+extern float oldPIDValue;
 extern uint8_t ecuDTC;
 
 int gen_random_number(void);
