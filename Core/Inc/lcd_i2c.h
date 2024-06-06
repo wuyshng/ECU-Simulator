@@ -15,7 +15,7 @@ extern I2C_HandleTypeDef hi2c1;
 
 extern int32_t curEncPos;
 extern int32_t oldEncPos;
-extern uint32_t stateMenu;
+extern uint8_t stateMenu;
 extern uint8_t oldStateMenu;
 extern int32_t menuMainCnt;
 extern int32_t menuMainLength;

@@ -60,7 +60,7 @@ extern int obd2_check;
 extern OBD2Data obd2_data;
 extern uint16_t encoder_count;
 extern int32_t menuMainCnt;
-extern uint32_t stateMenu;
+extern uint8_t stateMenu;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

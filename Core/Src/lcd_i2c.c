@@ -23,8 +23,8 @@ int8_t mode3Length = 2;
 int8_t mode3Select = 0;
 uint8_t oldStateECUDTC = 0;
 
-extern int32_t curPIDValue;
-extern int32_t oldPIDValue;
+extern float curPIDValue;
+extern float oldPIDValue;
 
 char *menu[] = {"PIDs SUPPORT", "SHOW CUR DATA", "SHOW STORED DTC"};
 char *menuMode1[] = {"Engine Cool Temp", "Engine Speed", "Vehicle Speed", "MAF Sensor", "Throttle", "O2 Voltage"};

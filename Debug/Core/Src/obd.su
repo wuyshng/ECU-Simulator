@@ -1,6 +1,6 @@
-../Core/Src/obd.c:15:5:gen_random_number	8	static
-../Core/Src/obd.c:20:6:ecu_scale_analog_value	24	static
-../Core/Src/obd.c:39:6:test_value_ecu	4	static
-../Core/Src/obd.c:49:6:ecu_send_respond	8	static
-../Core/Src/obd.c:152:6:map	24	static
-../Core/Src/obd.c:156:6:display_ecu_value	40	static
+../Core/Src/obd.c:22:5:gen_random_number	8	static
+../Core/Src/obd.c:27:6:ecu_scale_analog_value	24	static
+../Core/Src/obd.c:40:6:ecu_send_respond	8	static
+../Core/Src/obd.c:160:6:ecu_display_LCD	16	static
+../Core/Src/obd.c:245:6:map	24	static
+../Core/Src/obd.c:250:6:display_ecu_value	40	static
