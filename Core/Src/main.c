@@ -52,6 +52,7 @@
 uint8_t TxData[8];
 uint8_t RxData[8];
 uint32_t TxMailbox;
+uint8_t test;
 
 extern uint16_t adcScanValue[6];
 extern uint8_t adcConvCompleted;
